@@ -3,7 +3,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=htetahyan&label=Profile%20views&color=0e75b6&style=flat" alt="htetahyan" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=htetahyan" alt="htetahyan" /></a> </p>
+
 
 - 👨‍💻 All of my projects are available at [https://htetahyan.vercel.app](https://htetahyan.vercel.app)
 
