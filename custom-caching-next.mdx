@@ -6,14 +6,11 @@ npx create-next-app custom_cache_demo
 ```
 <h2> In the next.config.js add these two line</h2>
 
-<CH.Code>
 
-```javascript
+```javascript next.config.js
  cacheHandler: require.resolve('./cache-handler.js'),
   cacheMaxMemorySize: 20, //optional (50 mb) is default
 ```
-
-</CH.Code>
 ### Then create cache-handler.js in root folder
 ```
 const cache = new Map()
