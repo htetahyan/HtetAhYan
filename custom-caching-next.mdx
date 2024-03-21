@@ -10,12 +10,11 @@ npx create-next-app custom_cache_demo
 
 
 ```javascript next.config.js
- cacheHandler: require.resolve('./cache-handler.js'),
-  cacheMaxMemorySize: 20, //optional (50 mb) is default
+ cacheHandler: require.resolve('./cache-handler.js'),cacheMaxMemorySize: 20, //optional (50 mb) is default
 ```
 
 ### Then create cache-handler.js in root folder
-```
+```javascript 
 const cache = new Map()
 const EXPIRATION_TIME = 1000*60*60*24
 export default class CacheHandler {
