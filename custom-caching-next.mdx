@@ -1,19 +1,17 @@
 # Caching in next js with custom cache Handler
 ***
-Create a new Next js project
-<code>
+### Create a new Next js project
+
+```
 npx create-next-app custom_cache_demo
-</code>
-In the next.config.js add these two line
-<pre>
-<code>
+```
+### In the next.config.js add these two line
+```
  cacheHandler: require.resolve('./cache-handler.js'),
   cacheMaxMemorySize: 20, //optional (50 mb) is default
-</code>
-</pre>
-Then create cache-handler.js in root folder
 ```
-<code>
+### Then create cache-handler.js in root folder
+```
 const cache = new Map()
 const EXPIRATION_TIME = 1000*60*60*24
 export default class CacheHandler {
@@ -40,9 +38,8 @@ async get(key) {
             }
         }}
 }
-<code/>
-now let's test
-<code>
+```
+###  let's test
 ```
 const cacheManager = new CacheHandler();
 
@@ -61,5 +58,5 @@ export const getTypes = async (): Promise<TYPE[]> => {
             throw error;
         }
     }
-```</code>
-Remember, while customizing the cache handler provides flexibility, it's essential to carefully consider the caching strategy to avoid potential pitfalls such as stale data being served or excessive server load due to frequent cache invalidations. Balancing these factors is key to achieving the best performance outcomes with your Next.js application.
+```
+#### Remember, while customizing the cache handler provides flexibility, it's essential to carefully consider the caching strategy to avoid potential pitfalls such as stale data being served or excessive server load due to frequent cache invalidations. Balancing these factors is key to achieving the best performance outcomes with your Next.js application.
