@@ -1,1 +1,61 @@
-# h
+# Caching in next js with custom cache Handler
+***
+Create a new Next js project
+```
+npx create-next-app custom_cache_demo
+```
+In the next.config.js add these two line
+```
+ cacheHandler: require.resolve('./cache-handler.js'),
+  cacheMaxMemorySize: 20, //optional (50 mb) is default
+```
+Then create cache-handler.js in root folder
+```
+const cache = new Map()
+const EXPIRATION_TIME = 1000*60*60*24
+export default class CacheHandler {
+    constructor(options) {
+        this.options = options
+    }
+async get(key) {
+        const value = await cache.get(key)
+        return value?.exp> Date.now() ? value : null;//will set null if cache datas are expired
+
+    }
+    async set(key, data, ctx) {
+        cache.set(key, {
+            value: data,
+            lastModified: Date.now(),
+            tags: ctx.tags,
+            exp: Date.now() + EXPIRATION_TIME
+        })
+    }
+    async revalidateTag(tag) {
+        for (let [key, value] of cache) {
+            if (value.tags.includes(tag)) {
+                cache.delete(key)
+            }
+        }}
+}
+```
+now let's test
+```
+const cacheManager = new CacheHandler();
+
+export const getTypes = async (): Promise<TYPE[]> => {
+
+    const key = 'types';
+    let res = await cacheManager.get(key);//check cache exist
+
+    if (!res) {
+        try {
+            const resBlog = await db?.select().from(type).orderBy(asc(type.id)); 
+            await cacheManager.set(key, resBlog, { tags: ['types'] });//insert fresh data to cache
+            return await getTypes()//recall func
+        } catch (error) {
+            console.error('Error fetching types:', error);
+            throw error;
+        }
+    }
+```
+Remember, while customizing the cache handler provides flexibility, it's essential to carefully consider the caching strategy to avoid potential pitfalls such as stale data being served or excessive server load due to frequent cache invalidations. Balancing these factors is key to achieving the best performance outcomes with your Next.js application.
