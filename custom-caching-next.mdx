@@ -1,16 +1,16 @@
 <h1 className='text-5xl md:text-6xl lg:text-7xl font-semibold'>Caching in next js with custom cache Handler</h1>
 
-<h2 class='text-subheading mt-4'>Create a new Next js project</h2>
+<h2 className='text-subheading mt-4'>Create a new Next js project</h2>
 ``` javascript
 npx create-next-app custom_cache_demo
 ```
-<h2 class='text-subheading'>In the next.config.js add these two line</h2>
+<h2 className='text-subheading'>In the next.config.js add these two line</h2>
 ``` javascript next.config.js
  cacheHandler: require.resolve('./cache-handler.js'),cacheMaxMemorySize: 20, //optional (50 mb) is default
 ```
 
 
-<h2 class='text-subheading'>Then create cache-handler.js in root folder</h2>
+<h2 className='text-subheading'>Then create cache-handler.js in root folder</h2>
 ``` javascript 
 const cache = new Map()
 const EXPIRATION_TIME = 1000*60*60*24
@@ -39,7 +39,7 @@ async get(key) {
         }}
 }
 ```
-<h2 class='text-subheading'>let's test</h2>
+<h2 className='text-subheading'>let's test</h2>
 ``` javascript
 const cacheManager = new CacheHandler();
 
@@ -59,4 +59,4 @@ export const getTypes = async (): Promise<TYPE[]> => {
         }
     }
 ```
-<h2 class='text-subheading font-primary'>Remember, while customizing the cache handler provides flexibility, it's essential to carefully consider the caching strategy to avoid potential pitfalls such as stale data being served or excessive server load due to frequent cache invalidations. Balancing these factors is key to achieving the best performance outcomes with your Next.js application.</h2>
+<h2 className='text-subheading font-primary'>Remember, while customizing the cache handler provides flexibility, it's essential to carefully consider the caching strategy to avoid potential pitfalls such as stale data being served or excessive server load due to frequent cache invalidations. Balancing these factors is key to achieving the best performance outcomes with your Next.js application.</h2>
