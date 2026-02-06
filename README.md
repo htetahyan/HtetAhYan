@@ -5,7 +5,7 @@
 
 
 
-- 👨‍💻 All of my projects are available at [https://htetahyan.online](https://htetahyan.vercel.app)
+- 👨‍💻 All of my projects are available at [https://htetaryan.vercel.app](https://htetaryan.vercel.app)
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
